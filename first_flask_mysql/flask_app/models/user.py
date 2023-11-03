@@ -30,6 +30,12 @@ class Friend:
         for friend in results:
             friends.append(cls(friend))
         return friends
+    
+    @classmethod
+    def save(cls, data):
+        query = "INSERT INTO friends (first_name, last_name, occupation) VALUES (%(fname)s, %(lname)s, %(occ)s);"
+        # data is a dictionary that will be passed into the save method from server.py
+        return connectToMySQL('first_flask_mysql').query_db(query, data)
 
     # Create Users Models
 
