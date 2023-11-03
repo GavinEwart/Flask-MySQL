@@ -10,12 +10,11 @@ from flask_app.models import user # import entire file, rather than class, to av
 
 # Read Users Controller
 
-@app.route("/")
+@app.route('/')
 def index():
-    # call the get all classmethod to get all friends
     friends = user.Friend.get_all()
     print(friends)
-    return render_template("index.html")
+    return render_template("index.html", all_friends = friends)
 
 
 # Update Users Controller
