@@ -12,9 +12,8 @@ from flask_app.models import user # import entire file, rather than class, to av
 
 @app.route('/')
 def index():
-    friends = user.Friend.get_all()
-    print(friends)
-    return render_template("index.html", all_friends = friends)
+    all_friends = user.Friend.get_all()
+    return render_template("index.html", all_friends = all_friends)
 
 from flask_app.models.user import Friend
 @app.route('/create_friend', methods=["POST"])
@@ -31,6 +30,11 @@ def create_friend():
     # Don't forget to redirect after saving to the database.
     return redirect('/')
 # Update Users Controller
+
+@app.route('/friend/show/<int:friend_id>')
+def show(friend_id):
+    friend = user.Friend.get_friend_by_id(friend_id)
+    return render_template("show_friend.html", friend=friend)
 
 
 
