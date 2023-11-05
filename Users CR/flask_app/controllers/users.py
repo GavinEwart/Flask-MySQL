@@ -32,7 +32,7 @@ def create_user():
     print(request.form)
     # or
     print(data)
-    return redirect('/adduser')
+    return redirect('/')
 
 
 # Update Users Controller
