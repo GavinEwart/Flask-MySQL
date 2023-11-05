@@ -33,7 +33,9 @@ def create_friend():
 
 @app.route('/friend/show/<int:friend_id>')
 def show(friend_id):
+
     friend = user.Friend.get_friend_by_id(friend_id)
+
     return render_template("show_friend.html", friend=friend)
 
 

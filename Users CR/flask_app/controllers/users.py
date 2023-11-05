@@ -12,7 +12,27 @@ from flask_app.models import user # import entire file, rather than class, to av
 
 @app.route('/')
 def index():
-    return render_template('index.html')
+    all_users = user.User.show_all_users()
+    return render_template('index.html', all_users=all_users)
+
+@app.route('/adduser')
+def adduser():
+    return render_template('create.html')
+
+
+@app.route('/create', methods=['POST'])
+def create_user():
+    data = {
+        "fname": request.form["fname"],
+        "lname": request.form["lname"],
+        "email": request.form["email"]
+    }
+
+    user.User.add_user(data)
+    print(request.form)
+    # or
+    print(data)
+    return redirect('/adduser')
 
 
 # Update Users Controller
