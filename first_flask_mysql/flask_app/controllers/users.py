@@ -38,7 +38,15 @@ def show(friend_id):
 
     return render_template("show_friend.html", friend=friend)
 
+@app.route('/friends/update',methods=['POST'])
+def update():
+    Friend.update(request.form)
+    return redirect('/')
 
+@app.route('/friends/delete/<int:friend_id>')
+def delete(friend_id):
+    Friend.delete(friend_id)
+    return redirect('/')
 
 # Delete Users Controller
 

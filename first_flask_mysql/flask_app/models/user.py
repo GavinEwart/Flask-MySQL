@@ -50,8 +50,20 @@ class Friend:
         results = connectToMySQL(cls.db).query_db(query, data)
         return cls(results[0])
 
+    @classmethod
+    def update(cls,data):
+        query = """UPDATE friends 
+                SET first_name=%(first_name)s,last_name=%(last_name)s,email=%(email)s, occupation=%(occupation)s 
+                WHERE id = %(id)s;"""
+        return connectToMySQL(cls.DB).query_db(query,data)
     # Create Users Models
 
+    @classmethod
+    def update(cls,data):
+        query = """UPDATE friends 
+                SET first_name=%(first_name)s,last_name=%(last_name)s,email=%(email)s, occupation=%(occupation)s 
+                WHERE id = %(id)s;"""
+        return connectToMySQL(cls.DB).query_db(query,data)
 
     # Read Users Models
 
